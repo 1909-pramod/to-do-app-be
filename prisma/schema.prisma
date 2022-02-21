@@ -1,0 +1,39 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model tasks {
+  id               Int       @id @unique(map: "id_UNIQUE") @default(autoincrement())
+  task_title       String    @db.VarChar(45)
+  task_description String?   @db.VarChar(45)
+  start_date       DateTime  @db.DateTime(0)
+  end_date         DateTime? @db.DateTime(0)
+  status           String    @db.VarChar(45)
+  closed_date      DateTime? @db.DateTime(0)
+  user_id          Int?
+  parent_task_id   Int?
+  deleted_at       DateTime? @db.DateTime(0)
+  tasks            tasks?    @relation("tasksTotasks_parent_task_id", fields: [parent_task_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "tasks_ibfk_2")
+  user             user?     @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "tasks_ibfk_1")
+  other_tasks      tasks[]   @relation("tasksTotasks_parent_task_id")
+
+  @@index([parent_task_id], map: "parent_task_id")
+  @@index([user_id], map: "user_id")
+}
+
+model user {
+  id         Int       @id @unique(map: "id_UNIQUE") @default(autoincrement())
+  email      String    @db.VarChar(45)
+  username   String    @db.VarChar(45)
+  password   String    @db.VarChar(45)
+  dob        DateTime? @db.Date
+  first_name String    @db.VarChar(45)
+  last_name  String?   @db.VarChar(45)
+  deleted_at DateTime? @db.DateTime(0)
+  tasks      tasks[]
+}
