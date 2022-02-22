@@ -11,6 +11,9 @@
     "start": "cross-env NODE_ENV=production node dist/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "pre-commit": [
+    "lint"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/1909-pramod/to-do-app-be.git"
@@ -43,6 +46,9 @@
     "@types/graphql": "^14.5.0",
     "concurrently": "^7.0.0",
     "nodemon": "^2.0.15",
-    "prisma": "^3.9.2"
+    "prisma": "^3.9.2",
+    "@typescript-eslint/eslint-plugin": "^4.28.5",
+    "@typescript-eslint/parser": "^4.28.5",
+    "eslint": "^7.31.0"
   }
 }
