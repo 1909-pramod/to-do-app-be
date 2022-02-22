@@ -1,5 +1,5 @@
-import { TaskQueries } from "./taskQueries";
-import { UserQueries } from "./userQueries";
+import { TaskQueries } from './taskQueries';
+import { UserQueries } from './userQueries';
 
 const graphqlQueries = {
   ...UserQueries,

@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction } from 'express'
+import { Request, Response } from 'express'
 import { CreateUserParams, createUserQuery } from '../queries/userDbQueries'
 
 const creatUser = async (req: Request, res: Response) => {

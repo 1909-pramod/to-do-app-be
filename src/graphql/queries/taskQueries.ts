@@ -1,7 +1,7 @@
-import { GraphQLInt, GraphQLList, GraphQLString } from "graphql";
-import { taskResolvers as TaskResolvers } from "../resolvers";
+import { GraphQLInt, GraphQLList } from 'graphql';
+import { taskResolvers as TaskResolvers } from '../resolvers';
 
-import { Task } from "../types/taskType";
+import { Task } from '../types/taskType';
 
 export const TaskQueries = {
   getUserTasks: {

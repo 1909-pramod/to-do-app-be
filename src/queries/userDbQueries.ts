@@ -1,5 +1,5 @@
-import { PrismaClient } from "@prisma/client"
-import prismaExecute from "./prismaConnection"
+import { PrismaClient } from '@prisma/client'
+import prismaExecute from './prismaConnection'
 
 export interface CreateUserParams {
   email: string,
@@ -10,7 +10,14 @@ export interface CreateUserParams {
   lastName?: string
 }
 
-export const createUserQuery = async ({ email, username, password, dob, firstName, lastName }: CreateUserParams) => {
+export const createUserQuery = async ({
+  email,
+  username,
+  password,
+  dob,
+  firstName,
+  lastName
+}: CreateUserParams) => {
   const executeFunction = async (prisma: PrismaClient) => {
     const User = await prisma.user.create({
       data: {

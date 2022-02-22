@@ -8,11 +8,11 @@ const RootQuery = new GraphQLObjectType({
   fields: graphqlQueries
 })
 
-const RootMutation = new GraphQLObjectType({
-  name: 'ServiceMutation',
-  description: 'Mutations from api service',
-  fields: graphqlMutations
-})
+// const RootMutation = new GraphQLObjectType({
+//   name: 'ServiceMutation',
+//   description: 'Mutations from api service',
+//   fields: graphqlMutations
+// })
 
 const graphQLEndpoints = new GraphQLSchema({
   query: RootQuery

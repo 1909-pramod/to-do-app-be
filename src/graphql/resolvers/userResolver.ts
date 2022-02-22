@@ -1,4 +1,4 @@
-import { getAllUserQuery, getUserWithIdQuery } from "../../queries/userDbQueries";
+import { getAllUserQuery, getUserWithIdQuery } from '../../queries/userDbQueries';
 
 export class UserResolvers {
   async getAllUsers() {

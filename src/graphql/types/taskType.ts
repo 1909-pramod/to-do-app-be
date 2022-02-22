@@ -1,4 +1,4 @@
-import { GraphQLInt, GraphQLObjectType, GraphQLString } from "graphql";
+import { GraphQLInt, GraphQLObjectType, GraphQLString } from 'graphql';
 
 export const Task = new GraphQLObjectType({
   name: 'GetUserTasks',

@@ -1,5 +1,4 @@
-import { getAllUsertasks, getTaskWithTaskId } from "../../queries/taskDbQueries";
-import { getUserWithIdQuery } from "../../queries/userDbQueries";
+import { getAllUsertasks, getTaskWithTaskId } from '../../queries/taskDbQueries';
 
 export class TaskResolvers {
   async getUserTask(userId: number) {

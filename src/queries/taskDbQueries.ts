@@ -1,5 +1,5 @@
-import { PrismaClient } from "@prisma/client";
-import prismaExecute from "./prismaConnection";
+import { PrismaClient } from '@prisma/client';
+import prismaExecute from './prismaConnection';
 
 export interface CreateTaskParams {
   taskTitle: string,
@@ -12,7 +12,16 @@ export interface CreateTaskParams {
   parentTaskId?: number
 }
 
-export const createTask = async ({ taskTitle, taskDescription, startDate, endDate, status, closedDate, user_id, parentTaskId }: CreateTaskParams) => {
+export const createTask = async ({
+  taskTitle,
+  taskDescription,
+  startDate,
+  endDate,
+  status,
+  closedDate,
+  user_id,
+  parentTaskId
+}: CreateTaskParams) => {
   const executeFunction = async (prisma: PrismaClient) => {
     const Task = await prisma.tasks.create({
       data: {

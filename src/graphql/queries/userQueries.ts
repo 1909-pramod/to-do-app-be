@@ -1,7 +1,7 @@
-import { GraphQLInt, GraphQLList } from "graphql";
-import { userResolvers as UserResolvers } from "../resolvers";
+import { GraphQLInt, GraphQLList } from 'graphql';
+import { userResolvers as UserResolvers } from '../resolvers';
 
-import { UserObject } from "../types/userType";
+import { UserObject } from '../types/userType';
 
 export const UserQueries = {
   getAllUsers: {
