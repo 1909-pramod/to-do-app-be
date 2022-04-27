@@ -18,8 +18,6 @@ const createTaskForUser = async (req: Request, res: Response) => {
       taskDescription,
       startDate,
       endDate,
-      status,
-      closedDate,
       user_id,
       parentTaskId
     }: CreateTaskParams = req.body
@@ -28,8 +26,6 @@ const createTaskForUser = async (req: Request, res: Response) => {
       taskDescription,
       startDate,
       endDate,
-      status,
-      closedDate,
       user_id,
       parentTaskId
     })

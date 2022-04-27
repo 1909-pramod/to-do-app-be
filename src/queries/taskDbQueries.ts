@@ -6,7 +6,6 @@ export interface CreateTaskParams {
   taskDescription?: string,
   startDate: string,
   endDate?: string,
-  status: string,
   closedDate?: string,
   user_id: number,
   parentTaskId?: number
@@ -17,7 +16,6 @@ export const createTask = async ({
   taskDescription,
   startDate,
   endDate,
-  status,
   closedDate,
   user_id,
   parentTaskId
@@ -29,7 +27,6 @@ export const createTask = async ({
         task_description: taskDescription,
         start_date: new Date(startDate),
         end_date: endDate ? new Date(endDate) : null,
-        status: status,
         closed_date: closedDate ? new Date(closedDate) : null,
         user_id,
         parent_task_id: parentTaskId ? parentTaskId : null
@@ -45,6 +42,9 @@ export const getAllUsertasks = async (userId: number) => {
     const UserTasks = await prisma.tasks.findMany({
       where: {
         user_id: userId
+      },
+      include: {
+        other_tasks: true
       }
     })
     return UserTasks

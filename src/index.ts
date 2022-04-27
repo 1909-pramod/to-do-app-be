@@ -7,6 +7,8 @@ import userRoutes from './routes/user';
 import { PrismaClient } from '@prisma/client';
 import graphqlHTTP from 'express-graphql';
 import graphQLEndpoints from './graphql';
+import cors from 'cors'
+
 
 dotenv.config();
 
@@ -15,6 +17,7 @@ const app: Express = express();
 
 export const prisma = new PrismaClient();
 app.use(helmet());
+app.use(cors())
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/task', taskRoutes)

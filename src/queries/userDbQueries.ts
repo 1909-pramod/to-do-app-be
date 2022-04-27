@@ -51,3 +51,13 @@ export const getUserWithIdQuery = async (userId: number) => {
   }
   return await prismaExecute(executeFunction);
 }
+
+export const getUserWithEmail = async (email: string) => {
+  const executeFunction = async (prisma: PrismaClient) => {
+    const User = await prisma.user.findFirst({
+      where: { email }
+    })
+    return User
+  }
+  return await prismaExecute(executeFunction);
+}
