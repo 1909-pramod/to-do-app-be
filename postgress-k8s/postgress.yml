@@ -1,0 +1,78 @@
+
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   name: to-do-postgres
+# spec:
+#   replicas: 1
+#   selector:
+#     matchLabels:
+#       app: to-do-postgres
+#   template:
+#     metadata:
+#       labels:
+#         app: to-do-postgres
+#   spec:
+#     volumes:
+#       - name: to-do-postgres-pv-storage
+#         persistentVolumeClaim:
+#           claimName: to-do-postgres-pv-claim
+#     containers:
+#       - name: to-do-postgres
+#         image: postgres:alpine
+#         ports:
+#           - containerPort: 5432
+#         env:
+#           - name: POSTGRES_PASSWORD
+#             valueFrom:
+#               secretKeyRef:
+#                 name: to-do-postgres-secret-config
+#                 key: password
+#           - name: PGDATA
+#             value: /var/lib/postgresql/data/pgdata
+#         volumeMounts:
+#           - mountPath: /var/lib/postgresql/data
+#             name: to-do-postgres-pv-storage
+
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: to-do-postgress
+  labels:
+    app: to-do-postgress
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: to-do-postgress
+  template:
+    metadata:
+      labels:
+        app: to-do-postgress
+    spec:
+      containers:
+      - name: to-do-postgress
+        image: postgres:alpine
+        ports:
+        - containerPort: 5432
+        env:
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: to-do-postgres-secret-config
+              key: password
+        - name: PGDATA
+          value: /var/lib/postgresql/data/pgdata
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: to-do-postgress-service
+spec:
+  selector:
+    app: to-do-postgress
+  ports:
+    - protocol: TCP
+      port: 5432
+      targetPort: 5432

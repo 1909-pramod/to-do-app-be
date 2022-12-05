@@ -1,0 +1,8 @@
+- run the db in docker
+  - run the postgress k8s yml files
+    - run secrets
+    - run pv
+    - run pvc
+    - run deployment
+- run the db from external connections
+- connect to local db -- need to learn more for this ( use the system ip for now and consider this method 2 )

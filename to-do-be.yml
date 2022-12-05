@@ -1,0 +1,63 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: to-do-express
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: to-do-express
+  template:
+    metadata:
+      labels:
+        app: to-do-express
+    spec:
+      containers:
+        - name: to-do-express
+          image: localhost:32000/to-do-be-express
+          ports:
+            - containerPort: 5000
+          resources:
+            limits:
+              memory: "100Mi"
+              cpu: "50m"
+          env:
+          - name: ME_CONFIG_MONGODB_SERVER
+            valueFrom: 
+              configMapKeyRef:
+                name: mongodb-configmap
+                key: database_url
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: to-do-express-cluster-ip-service
+spec:
+  type: ClusterIP
+  selector:
+    app: to-do-express
+  ports:
+    - name: to-do-express
+      protocol: TCP
+      port: 5000
+      targetPort: 5000
+
+---
+
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: to-do-express-node-port:5000
+# spec:
+#   # ! NodePort -> only for development purpose
+#   type: NodePort
+#   selector:
+#     app: to-do-express
+#   ports:
+#     - port: 5000
+#       targetPort: 5000
+#       protocol: TCP
+#       name: to-do-express
+      # nodePort: 30006

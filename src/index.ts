@@ -8,6 +8,7 @@ import { PrismaClient } from '@prisma/client';
 import graphqlHTTP from 'express-graphql';
 import graphQLEndpoints from './graphql';
 import cors from 'cors'
+import main from './bxgy';
 
 
 dotenv.config();
@@ -28,4 +29,7 @@ app.get('/', (req: Request, res: Response) => {
   res.send('<h1>Hello from the TypeScript world!</h1>');
 });
 
-app.listen(PORT, () => console.log(`Running on ${PORT} ⚡`));
+// app.listen(PORT, () => console.log(`Running on ${PORT} ⚡`));
+
+
+main();
